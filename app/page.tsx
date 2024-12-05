@@ -1,59 +1,4 @@
-/*"use client";
-
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import Card from "@/components/Card";
-import { useRouter } from "next/navigation";
-
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  company: { name: string };
-}
-
-const HomePage = () => {
-  const [users, setUsers] = useState<User[]>([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const router = useRouter();
-
-  useEffect(() => {
-    axios.get("http://jsonplaceholder.typicode.com/users").then((response) => {
-      setUsers(response.data);
-    });
-  }, []);
-
-  const filteredUsers = users.filter((user) =>
-    user.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  return (
-    <div className="container mx-auto py-8">
-      <input
-        type="text"
-        placeholder="Начните ввод имени пользователя..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="w-full p-2 border rounded mb-4"
-      />
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filteredUsers.map((user) => (
-          <Card
-            key={user.id}
-            name={user.name}
-            email={user.email}
-            company={user.company.name}
-            onClick={() => router.push(`/user/${user.id}`)}
-          />
-        ))}
-      </div>
-    </div>
-  );
-};
-
-export default HomePage;*/
-
-"use client";
+"use client"; // отображаем на клиенте
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -72,7 +17,7 @@ const HomePage = () => {
       setLoading(true);
       try {
         const response = await fetch(
-          "http://jsonplaceholder.typicode.com/users"
+          "https://jsonplaceholder.typicode.com/users"
         );
         const data = await response.json();
         setUsers(data);
@@ -139,7 +84,7 @@ const HomePage = () => {
                 name={user.name}
                 email={user.email}
                 company={user.company.name}
-                onClick={() => router.push(`/user/${user.id}`)} // Переход по клику
+                onButtonClick={() => router.push(`/user/${user.id}`)} // Переход по клику
               />
             ))}
       </div>

@@ -4,18 +4,21 @@ interface CardProps {
   name: string;
   email: string;
   company: string;
-  onClick: () => void;
+  onButtonClick: () => void; // Обработчик клика для кнопки
 }
 
-const Card: React.FC<CardProps> = ({ name, email, company, onClick }) => {
+const Card: React.FC<CardProps> = ({ name, email, company, onButtonClick }) => {
   return (
-    <div
-      className="border p-4 rounded shadow hover:bg-gray-100 cursor-pointer transition-card"
-      onClick={onClick}
-    >
+    <div className="border p-4 rounded shadow hover:bg-gray-100 transition">
       <h2 className="text-lg font-bold">{name}</h2>
       <p className="text-sm text-gray-600">{email}</p>
       <p className="text-sm text-gray-500">{company}</p>
+      <button
+        className="mt-4 px-4 py-2 bg-gray-300 text-gray-800 rounded shadow-lg hover:bg-gray-500 hover:text-white transition"
+        onClick={onButtonClick}
+      >
+        узнать больше
+      </button>
     </div>
   );
 };

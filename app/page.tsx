@@ -1,4 +1,4 @@
-"use client"; // отображаем на клиенте
+/*"use client"; // отображаем на клиенте
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -53,7 +53,7 @@ const HomePage = () => {
     <div className="p-8">
       <h1 className="text-3xl font-bold mb-4">Список пользователей</h1>
 
-      {/* Поле поиска */}
+      // Поле поиска
       <div className="flex items-center gap-2 mb-6">
         <input
           type="text"
@@ -72,7 +72,7 @@ const HomePage = () => {
         )}
       </div>
 
-      {/* Список пользователей */}
+      // Список пользователей
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {loading
           ? Array(4)
@@ -92,4 +92,40 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default HomePage;*/
+
+import { SearchableUserList } from "@/components/SearchableUserList";
+
+export const metadata = {
+  title: "Список пользователей",
+  description: "Главная страница с пользователями, отрисована на сервере",
+};
+
+// Функция для получения пользователей с фильтрацией
+async function fetchUsers(search: string = "") {
+  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+  if (!res.ok) {
+    throw new Error("Ошибка при загрузке пользователей");
+  }
+  const users = await res.json();
+
+  // Фильтрация пользователей по имени на сервере
+  if (search) {
+    return users.filter((user: any) =>
+      user.name.toLowerCase().includes(search.toLowerCase())
+    );
+  }
+  return users;
+}
+
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams?: { [key: string]: string };
+}) {
+  const params = await searchParams; // Асинхронное извлечение searchParams
+  const search = params?.search ?? ""; // Извлечение значения search из параметров
+  const users = await fetchUsers(search); // Получение пользователей
+
+  return <SearchableUserList initialUsers={users} initialSearch={search} />;
+}

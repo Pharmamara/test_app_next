@@ -1,3 +1,4 @@
+// это серверный компонент
 import { SearchableUserList } from "@/components/SearchableUserList";
 
 export const metadata = {

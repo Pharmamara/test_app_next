@@ -31,8 +31,6 @@ export function SearchableUserList({ initialUsers }: SearchableUserListProps) {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-6">Список пользователей</h1>
-
       {/* Строка поиска */}
       <div className="flex items-center gap-2 mb-6">
         <input
@@ -44,7 +42,7 @@ export function SearchableUserList({ initialUsers }: SearchableUserListProps) {
         />
         <button
           onClick={handleClear}
-          className="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-black rounded shadow transition"
+          className="px-4 py-2 bg-gray-300  hover:bg-gray-400 text-black rounded shadow transition font-button"
         >
           Очистить
         </button>

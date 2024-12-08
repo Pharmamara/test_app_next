@@ -9,14 +9,7 @@
     "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/page.css",
       "static/chunks/app/page.js"
-    ],
-    "/user/[id]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/user/[id]/page.css",
-      "static/chunks/app/user/[id]/page.js"
     ]
   }
 }
